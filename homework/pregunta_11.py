@@ -16,3 +16,25 @@ def pregunta_11():
 
 
     """
+    df = open("files/input/data.csv", "r").readlines()
+    df = [z.replace('\n', '')for z in df]
+    df = [z.split("\t")for z in df]
+    data = []
+    for row in df:
+        col_2 = int(row[1])
+        for i in row[3].split(","):
+            data.append((i, col_2))
+    tuple_data = sorted(data , key=lambda x: x[0])
+
+    diccionario = {}
+    for key, value in tuple_data:
+        if key in diccionario:
+            diccionario[key] += value
+        else:
+            diccionario[key] = value
+  
+    return diccionario
+
+
+if __name__ == "__main__":
+    print(pregunta_11())

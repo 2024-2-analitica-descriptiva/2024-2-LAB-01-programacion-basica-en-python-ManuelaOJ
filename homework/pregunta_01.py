@@ -14,3 +14,14 @@ def pregunta_01():
     214
 
     """
+    df = open("files/input/data.csv", "r").readlines()
+    df = [z.replace('\n', '')for z in df]
+    df = [z.split("\t")for z in df]
+    contador = 0
+    for i in range(len(df)):
+        contador += int(df[i][1])
+
+    return contador
+
+if __name__ == "__main__":
+    print(pregunta_01())

@@ -20,3 +20,17 @@ def pregunta_10():
 
 
     """
+    df = open("files/input/data.csv", "r").readlines()
+    df = [z.replace('\n', '')for z in df]
+    df = [z.split("\t")for z in df]
+    data = []
+    for row in df:
+        letra = row[0]
+        col_4 = len(row[3].split(",")) 
+        col_5 = len(row[4].split(","))
+        data.append((letra, col_4, col_5))
+
+    return data
+
+if __name__ == "__main__":
+    print(pregunta_10())

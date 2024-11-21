@@ -26,3 +26,33 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    df = open("files/input/data.csv", "r").readlines()
+    df = [z.replace('\n', '')for z in df]
+    df = [z.split("\t")for z in df]
+    data = []
+    for i in range(len(df)):
+        list = df[i][4].split(",")
+        for j in list :
+            data.append((j.split(":")[0], j.split(":")[1]))
+    tuple_data = sorted(data , key=lambda x: x[0])
+    diccionario = {}
+    for key, value in tuple_data:
+ 
+        if key not in diccionario:
+            diccionario[key] = []
+            diccionario[key].append(int(value))
+        else:
+            diccionario[key].append(int(value))
+    for key, value in diccionario.items():
+        diccionario[key] = (max(value), min(value))
+
+    tuple_final = []
+    for key, value in diccionario.items():
+        tuple_final.append((key, value[1], value[0])) 
+    return tuple_final 
+
+
+
+if __name__ == "__main__":
+    print(pregunta_06())
+
